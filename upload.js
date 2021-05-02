@@ -38,8 +38,12 @@ export function upload(selector, optiions, {} = { }){
          const reader = new FileReader ()
 
          reader.onload = ev =>{
-             console.log (ev.target.result)
-             input.insertAdjacentHTML(where, 'afterend'. html, "<img src=${ev.target.result}/>")
+             const src = ev.target.result
+             preview.insertAsjacentHTML (where, 'afterbegin', html,`
+                <div class="preview-image">
+                    <img src="${src}" alt="${file.name}"/>
+                </div>
+             `)
          }
 
          reader.readAsDataURL (file)

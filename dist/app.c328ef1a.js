@@ -168,8 +168,8 @@ function upload(selector, optiions) {
       var reader = new FileReader();
 
       reader.onload = function (ev) {
-        console.log(ev.target.result);
-        input.insertAdjacentHTML(where, 'afterend'.html, "<img src=${ev.target.result}/>");
+        var src = ev.target.result;
+        preview.insertAsjacentHTML(where, 'afterbegin', html, "\n                <div class=\"preview-image\">\n                    <img src=\"".concat(src, "\" alt=\"").concat(file.name, "\"/>\n                </div>\n             "));
       };
 
       reader.readAsDataURL(file);
