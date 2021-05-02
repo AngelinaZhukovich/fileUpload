@@ -1,5 +1,7 @@
-import {uploade} from './uploade.js'
+import {upload} from './upload.js'
 
-uploade (selector:'#file', {
-    multi: true
+upload (selector,'#file', options, {
+    multi: true,
+    accept: ['.png', '.jpg', '.jpeg']
+
 })

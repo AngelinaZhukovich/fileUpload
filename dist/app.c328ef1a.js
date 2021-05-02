@@ -117,22 +117,78 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"uploade.js":[function(require,module,exports) {
+})({"upload.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.uploade = uploade;
+exports.upload = upload;
 
-function uploade(selector) {}
+function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+
+function upload(selector, optiions) {
+  var _ref = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+  _objectDestructuringEmpty(_ref);
+
+  var input = document.querySelector(selector);
+  var preview = document.createElement(tagName, 'div');
+  preview.classList.add('preview');
+  var open = document.createElement(tagName, 'button');
+  open.classList.add('btn');
+  open.textContent = 'Открыть';
+
+  if (optiions.multi) {
+    input.setAttribute(qualifiedName, 'multiple', value, true);
+  }
+
+  if (optiions.accept && Array.isArray(optiions.accept)) {
+    input.setAttribute(qualifiedName, 'accept', optiions.accept.join(','));
+  }
+
+  input.insertAsjacentElement(position, 'afterend', preview);
+  input.insertAsjacentElement(position, 'afterend', open);
+
+  var triggerInput = function triggerInput() {
+    return input.click();
+  };
+
+  var changeHandler = function changeHandler(event) {
+    if (!event.target.files.length) {
+      return;
+    }
+
+    var files = Array.from(event.target.files);
+    files.forEach(function (file) {
+      if (!file.type.match(regexp, 'image')) {
+        return;
+      }
+
+      var reader = new FileReader();
+
+      reader.onload = function (ev) {
+        console.log(ev.target.result);
+        input.insertAdjacentHTML(where, 'afterend'.html, "<img src=${ev.target.result}/>");
+      };
+
+      reader.readAsDataURL(file);
+    });
+  };
+
+  open.addEventListener(type, 'click', triggerInput);
+  input.addEventListener('change', changeHandler);
+}
 },{}],"app.js":[function(require,module,exports) {
 "use strict";
 
-var _uploade = require("./uploade.js");
+var _upload = require("./upload.js");
 
-console.log('app.js');
-},{"./uploade.js":"uploade.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+(0, _upload.upload)(selector, '#file', options, {
+  multi: true,
+  accept: ['.png', '.jpg', '.jpeg']
+});
+},{"./upload.js":"upload.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -160,7 +216,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57869" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56044" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
